@@ -21,8 +21,6 @@ public class Paginator {
 
     private int totalPages;
 
-    private int pagingCounter;
-
     private int prevPage;
 
     private int nextPage;

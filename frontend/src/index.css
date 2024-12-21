@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .link-blue {
+        @apply py-2 text-blue-500 font-semibold hover:underline;
+    }
+
+    .input {
+        @apply block w-full rounded-md bg-white px-3.5 py-3 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-indigo-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm;
+    }
+
+    .label {
+        @apply block text-base font-medium text-gray-900;
+    }
+
+    .cancel-button {
+        @apply rounded-md px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 ;
+    }
+
+    .confirm-button {
+        @apply rounded-md bg-indigo-600 px-4 py-2 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+    }
+
+    .danger-button {
+        @apply rounded-md bg-red-600 px-4 py-2 text-base font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+    }
+
+}
+

@@ -56,10 +56,12 @@ public class EmployeeService {
     }
 
     public Employee update(long id, Employee employee) {
+        System.out.println("HERE !!!!");
         boolean exist = exist(id);
         if (!exist) {
             return null;
         }
+        employee.setId(id);
         return saveOrUpdate(employee);
 
     }

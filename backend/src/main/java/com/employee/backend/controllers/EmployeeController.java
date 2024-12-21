@@ -12,8 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("api/employee")
 @CrossOrigin("*")
-@RequestMapping("/api/employee")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -44,43 +44,44 @@ public class EmployeeController {
     @GetMapping("{id}")
     public ResponseEntity<?> getEmployee(@PathVariable long id) {
 
-        Employee itemCategory = employeeService.findById(id);
+        Employee employee = employeeService.findById(id);
 
-        if (itemCategory == null) {
+        if (employee == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ResponseType<>(EMessage.NOT_FOUND.byId(ETable.EMPLOYEE, id)));
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new ResponseType<>(EMessage.SUCCESS.toString(), itemCategory));
+                .body(new ResponseType<>(EMessage.SUCCESS.toString(), employee));
 
     }
 
     @GetMapping("")
-    public ResponseEntity<?> getItemCategories(
+    public ResponseEntity<?> getEmployees(
             @RequestParam(required = false, defaultValue = "1") int page,
             @RequestParam(required = false, defaultValue = "-1") int limit,
             @RequestParam(required = false, defaultValue = "") String keyword
     ) {
 
-        PaginationResult<Employee> itemCategories = employeeService.findAll(page, limit, keyword);
+        PaginationResult<Employee> employees = employeeService.findAll(page, limit, keyword);
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new ResponseType<>(EMessage.SUCCESS.toString(), itemCategories));
+                .body(new ResponseType<>(EMessage.SUCCESS.toString(), employees));
 
     }
 
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateEmployee(@PathVariable long id, @RequestBody Employee itemCategory) {
+    public ResponseEntity<?> updateEmployee(@PathVariable long id, @RequestBody Employee employee) {
 
-        Employee updated = employeeService.update(id, itemCategory);
+        Employee updated = employeeService.update(id, employee);
 
         if (updated == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ResponseType<>(EMessage.NOT_FOUND.byId(ETable.EMPLOYEE, id)));
         }
 
-        return ResponseEntity.ok(updated);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponseType<>(EMessage.SUCCESS_UPDATED.byId(ETable.EMPLOYEE, id)));
 
     }
 
@@ -90,6 +91,13 @@ public class EmployeeController {
         employeeService.delete(id);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ResponseType<>(EMessage.SUCCESS_DELETED.byId(ETable.EMPLOYEE, id)));
+
+    }
+
+    @GetMapping("test")
+    public String test() {
+
+        return "test";
 
     }
 }
