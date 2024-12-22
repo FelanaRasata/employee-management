@@ -3,14 +3,15 @@ package com.employee.backend.services;
 
 import com.employee.backend.entities.User;
 import com.employee.backend.repositories.UserRepository;
-import com.employee.backend.utils.dto.SignInRequestDTO;
-import com.employee.backend.utils.dto.SignUpRequestDTO;
+import com.employee.backend.utils.dto.request.SignInRequestDTO;
+import com.employee.backend.utils.dto.request.SignUpRequestDTO;
 import com.employee.backend.utils.enumeration.EMessage;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 @Component
 public class UserService {
@@ -33,6 +34,7 @@ public class UserService {
     }
 
     public User signUp(SignUpRequestDTO signUpRequest) {
+
         User user = new User();
         user.setUsername(signUpRequest.getUsername());
         user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));

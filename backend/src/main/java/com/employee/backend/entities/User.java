@@ -29,6 +29,7 @@ public class User extends BaseEntity implements UserDetails {
     @NotNull(message = "Ajoutez votre nom à votre employé")
     private String password;
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();

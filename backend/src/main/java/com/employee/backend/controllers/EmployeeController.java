@@ -3,10 +3,12 @@ package com.employee.backend.controllers;
 
 import com.employee.backend.entities.Employee;
 import com.employee.backend.services.EmployeeService;
+import com.employee.backend.utils.dto.request.EmployeeRequestDTO;
 import com.employee.backend.utils.dto.ResponseType;
 import com.employee.backend.utils.enumeration.EMessage;
 import com.employee.backend.utils.enumeration.ETable;
 import com.employee.backend.utils.pagination.PaginationResult;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +29,7 @@ public class EmployeeController {
 
 
     @PostMapping()
-    public ResponseEntity<?> saveEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> saveEmployee(@RequestBody @Valid EmployeeRequestDTO employee) {
 
         Employee saved = employeeService.save(employee);
 
@@ -71,7 +73,7 @@ public class EmployeeController {
 
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateEmployee(@PathVariable long id, @RequestBody Employee employee) {
+    public ResponseEntity<?> updateEmployee(@PathVariable long id, @RequestBody @Valid EmployeeRequestDTO employee) {
 
         Employee updated = employeeService.update(id, employee);
 

@@ -1,11 +1,13 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import SignIn from '../../pages/public/SignIn.tsx'
-import SignUp from '../../pages/public/SignUp.tsx'
-import EmployeeCreate from '../../pages/private/EmployeeCreate.tsx'
-import EmployeeUpdate from '../../pages/private/EmployeeUpdate.tsx'
-import EmployeeList from "../../pages/private/EmployeeList/EmployeeList.tsx"
-import Layout from "../../layout/Layout.tsx"
-import Home from "../../pages/private/Home.tsx"
+import SignIn from '../../modules/public/pages/SignIn.tsx'
+import SignUp from '../../modules/public/pages/SignUp.tsx'
+import EmployeeCreate from '../../modules/employee/page/EmployeeCreate.tsx'
+import EmployeeEdit from '../../modules/employee/page/EmployeeEdit.tsx'
+import EmployeeList from "../../modules/employee/page/EmployeeList/EmployeeList.tsx"
+import Layout from "../../layouts/page/Layout.tsx"
+import Home from "../../modules/others/page/Home.tsx"
+import Profile from "../../modules/others/page/Profile.tsx"
+import ProtectedRoute from "./ProtectedRoute.tsx"
 
 
 const routes = [
@@ -27,7 +29,25 @@ const routes = [
         children: [
             {
                 index: true, // Route par défaut
-                element: <Home/>
+                element: (
+                    <ProtectedRoute>
+                        <Home/>
+                    </ProtectedRoute>
+                )
+            }
+        ]
+    },
+    {
+        path: "/profile",
+        element: <Layout/>, // Layout commun
+        children: [
+            {
+                index: true, // Route par défaut
+                element: (
+                    <ProtectedRoute>
+                        <Profile/>
+                    </ProtectedRoute>
+                )
             }
         ]
     },
@@ -37,15 +57,27 @@ const routes = [
         children: [
             {
                 index: true, // Route par défaut
-                element: <EmployeeList/>
+                element: (
+                    <ProtectedRoute>
+                        <EmployeeList/>
+                    </ProtectedRoute>
+                )
             },
             {
                 path: "create",
-                element: <EmployeeCreate/>
+                element: (
+                    <ProtectedRoute>
+                        <EmployeeCreate/>
+                    </ProtectedRoute>
+                )
             },
             {
                 path: "update/:id",
-                element: <EmployeeUpdate/>
+                element: (
+                    <ProtectedRoute>
+                        <EmployeeEdit/>
+                    </ProtectedRoute>
+                )
             }
         ]
     }

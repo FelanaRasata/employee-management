@@ -4,10 +4,10 @@ package com.employee.backend.controllers;
 import com.employee.backend.entities.User;
 import com.employee.backend.services.UserService;
 import com.employee.backend.services.security.JwtService;
-import com.employee.backend.utils.dto.SignInRequestDTO;
+import com.employee.backend.utils.dto.request.SignInRequestDTO;
 import com.employee.backend.utils.dto.JwtResponseDTO;
 import com.employee.backend.utils.dto.ResponseType;
-import com.employee.backend.utils.dto.SignUpRequestDTO;
+import com.employee.backend.utils.dto.request.SignUpRequestDTO;
 import com.employee.backend.utils.enumeration.EMessage;
 import com.employee.backend.utils.enumeration.ETable;
 import jakarta.validation.ConstraintViolationException;
@@ -15,6 +15,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,7 +37,7 @@ public class AuthController {
 
 
     @PostMapping("/sign-in")
-    public ResponseEntity<?> signIn(@RequestBody SignInRequestDTO authRequest) {
+    public ResponseEntity<?> signIn(@RequestBody @Valid SignInRequestDTO authRequest) {
 
         try {
 
@@ -75,6 +76,15 @@ public class AuthController {
                     .body(new ResponseType<>(EMessage.USERNAME_USED.toString()));
 
         }
+
+    }
+
+    @GetMapping("current")
+    public ResponseEntity<?> getUserCurrent() {
+
+        User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseType<>(EMessage.SUCCESS.toString(), user));
 
     }
 

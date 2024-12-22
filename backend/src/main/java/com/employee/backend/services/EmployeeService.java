@@ -2,6 +2,7 @@ package com.employee.backend.services;
 
 import com.employee.backend.entities.Employee;
 import com.employee.backend.repositories.EmployeeRepository;
+import com.employee.backend.utils.dto.request.EmployeeRequestDTO;
 import com.employee.backend.utils.pagination.PaginationResult;
 import org.springframework.stereotype.Component;
 
@@ -43,8 +44,12 @@ public class EmployeeService {
         return employeeRepository.existsById(id);
     }
 
-    public Employee save(Employee employee) {
-        return saveOrUpdate(employee);
+    public Employee save(EmployeeRequestDTO employee) {
+
+        Employee saved = new Employee();
+        saved.setDateOfBirth(employee.getDateOfBirth());
+        saved.setFullName(employee.getFullName());
+        return saveOrUpdate(saved);
     }
 
     private Employee saveOrUpdate(Employee employee) {
@@ -55,14 +60,19 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public Employee update(long id, Employee employee) {
-        System.out.println("HERE !!!!");
+    public Employee update(long id, EmployeeRequestDTO employee) {
+
         boolean exist = exist(id);
         if (!exist) {
             return null;
         }
-        employee.setId(id);
-        return saveOrUpdate(employee);
+
+        Employee saved = new Employee();
+        saved.setId(id);
+        saved.setDateOfBirth(employee.getDateOfBirth());
+        saved.setFullName(employee.getFullName());
+
+        return saveOrUpdate(saved);
 
     }
 
