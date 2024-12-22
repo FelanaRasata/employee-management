@@ -28,6 +28,5 @@ public class Employee extends BaseEntity {
     private String fullName;
 
     @NotNull(message = "The birth of date is missing")
-    @NotBlank(message = "The birth of date is missing")
     private LocalDate dateOfBirth;
 }

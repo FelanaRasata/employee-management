@@ -1,4 +1,8 @@
-export interface ResponseType<T> {
+/**
+ * Interface qui contient la structure des réponses uniformes
+ *
+ */
+export interface IResponseType<T> {
 
     message: string;
 
@@ -6,7 +10,10 @@ export interface ResponseType<T> {
 
 }
 
-
+/**
+ * Interface qui gère la pagination d'une liste
+ *
+ */
 export interface IPaginationResult<T> {
 
     items?: T
@@ -15,7 +22,10 @@ export interface IPaginationResult<T> {
 
 }
 
-
+/**
+ * Interface qui contient les éléments de la pagination d'une liste
+ *
+ */
 export interface IPaginator {
 
     totalItems: number

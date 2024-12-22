@@ -1,8 +1,8 @@
 package com.employee.backend.services.security;
 
+import com.employee.backend.entities.User;
 import com.employee.backend.repositories.UserRepository;
 import com.employee.backend.utils.enumeration.EMessage;
-import com.employee.backend.utils.enumeration.ETable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * Classe qui gère certains injections de dépendance
+ */
 @Configuration
 public class ApplicationConfiguration {
 
@@ -27,7 +30,7 @@ public class ApplicationConfiguration {
     @Bean
     UserDetailsService userDetailsService() {
         return username -> userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(EMessage.NOT_FOUND.byEntity(ETable.USER)));
+                .orElseThrow(() -> new UsernameNotFoundException(EMessage.NOT_FOUND.byEntity(User.class.getName())));
     }
 
     @Bean

@@ -1,7 +1,7 @@
 import {FormEvent, useState} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import {signIn} from "../core/service/auth.service.ts"
-import {SignInRequestDTO} from "../core/model/dto/SignInRequestDTO.ts"
+import {UserRequestDTO} from "../core/model/dto/UserRequestDTO.ts"
 import {useAlert} from "../../../layouts/context/AlertContext.tsx"
 
 
@@ -26,7 +26,7 @@ const SignIn = () => {
 
         try {
 
-            const signUpRequestDTO: SignInRequestDTO = {username, password}
+            const signUpRequestDTO: UserRequestDTO = {username, password}
             const token = await signIn(signUpRequestDTO)
 
             localStorage.setItem('token', token)

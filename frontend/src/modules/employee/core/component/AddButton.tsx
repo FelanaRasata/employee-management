@@ -1,6 +1,10 @@
 import {Link} from "react-router-dom"
 
-
+/**
+ * Composant pour le bouton "Add" dans la liste des employés
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const AddButton = () => {
     return (
         <div className="mt-6 flex items-center justify-end gap-x-6">

@@ -7,25 +7,31 @@ import LinkReturn from "../../../shared/core/component/LinkReturn.tsx"
 import {useTitle} from "../../../layouts/context/TitleContext.tsx"
 import {useAlert} from "../../../layouts/context/AlertContext.tsx"
 
-
+/**
+ * Composant pour la modification d'un employé
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const EmployeeEdit = () => {
 
     const navigate = useNavigate()
 
-    const {showAlert} = useAlert()
 
+    const {showAlert} = useAlert() // Pour l'affichage d'alert
 
-    const {setTitle} = useTitle()
+    const {setTitle} = useTitle() // Pour le titre de page
 
+    // Gestion de TitleContext
     useEffect(() => {
         setTitle('Employee Edit')
     }, [setTitle])
 
-    /*
-    * On prend l'employée correspondant à l'id de l'url
-    * */
-    const {id} = useParams()
 
+    const {id} = useParams() // param du path
+
+    /*
+    * On prend l'employée correspondant à l'id
+    * */
     useEffect(() => {
         async function fetchEmployee() {
             try {
@@ -77,6 +83,9 @@ const EmployeeEdit = () => {
     // Variable l'affichage du Modal Delete
     const [isVisible, setIsVisible] = useState<boolean>(false)
 
+    /*
+   * Appel de l'action de la suppression de l'employée
+   * */
     const handleOnDelete = async () => {
 
         try {
@@ -96,10 +105,12 @@ const EmployeeEdit = () => {
 
     return (
         <>
+            {/*Lien vers la page précedente*/}
             <LinkReturn link={"/employees"}>
                 Employees
             </LinkReturn>
 
+            {/*Modal pour confirmer la suppression*/}
             <ModalDanger
                 isVisible={isVisible}
                 onClose={() => setIsVisible(false)}
@@ -109,6 +120,7 @@ const EmployeeEdit = () => {
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </ModalDanger>
 
+            {/*Formulaire de modification d'employé*/}
             <form onSubmit={handleOnUpdate}>
                 <div className="space-y-12">
 

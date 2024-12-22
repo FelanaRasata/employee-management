@@ -7,14 +7,20 @@ import {useTitle} from "../../../layouts/context/TitleContext.tsx"
 import {useAlert} from "../../../layouts/context/AlertContext.tsx"
 
 
+/**
+ * Composant pour la modification d'un employé
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const EmployeeCreate = () => {
 
     const navigate = useNavigate()
 
-    const {showAlert} = useAlert()
+    const {showAlert} = useAlert() // Pour l'affichage d'alerte
 
-    const {setTitle} = useTitle()
+    const {setTitle} = useTitle() // Pour le titre de page
 
+    // Gestion de TitleContext
     useEffect(() => {
         setTitle('Employee Add')
     }, [setTitle])
@@ -27,6 +33,7 @@ const EmployeeCreate = () => {
         fullName: "",
         dateOfBirth: ""
     })
+
 
     /*
    * Appel de l'action de l'enregistrement de l'employée
@@ -51,10 +58,12 @@ const EmployeeCreate = () => {
 
     return (
         <>
+            {/*Lien vers la page précedente*/}
             <LinkReturn link={"/employees"}>
                 Employees
             </LinkReturn>
 
+            {/*Formulaire de création d'employé*/}
             <form onSubmit={handleOnSubmit} className="mt-4">
                 <div className="space-y-12">
 

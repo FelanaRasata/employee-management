@@ -3,13 +3,17 @@ import {useTitle} from "../../../layouts/context/TitleContext.tsx"
 import {useEffect} from "react"
 
 
+/**
+ * Composant pour la page d'accueil'
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const Home = () => {
 
-    /*
-    * Mise à jour du titre du page
-    * */
-    const {setTitle} = useTitle()
 
+    const {setTitle} = useTitle() // Pour le titre de page
+
+    // Gestion de TitleContext
     useEffect(() => {
         setTitle('Home')
     }, [setTitle])

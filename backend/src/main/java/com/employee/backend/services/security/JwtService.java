@@ -14,6 +14,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Service qui gére la création du token de l'utilisateur.
+ *
+ */
 @Component
 public class JwtService {
 

@@ -15,7 +15,16 @@ interface Props {
     children: string
 }
 
-
+/**
+ * Composant pour la modification d'un employé
+ * @param isVisible valeur pour savoir si on affiche ou non le modal
+ * @param onConfirm fonction à appeler si on confirme l'action demandée
+ * @param onClose fonction à appeler si on annule / ferme l'action demandée
+ * @param title titre du modal
+ * @param children texte du modal
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const ModalDanger = ({isVisible, onConfirm, onClose, title, children}: Props) => {
 
     return (

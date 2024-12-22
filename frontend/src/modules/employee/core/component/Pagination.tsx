@@ -9,18 +9,27 @@ interface Props {
 }
 
 
+/**
+ * Composant pour la pagination de la liste des employés
+ * @param paginator variable qui contient les caractéristiques de la liste affichée
+ * @param onChangePage fonction pour changer de page
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const Pagination = ({paginator, onChangePage}: Props) => {
 
     const total = paginator.totalItems
     const start = paginator.offset
     const end = (paginator.offset + paginator.itemsPerPage) > total ? total : (paginator.offset + paginator.itemsPerPage)
 
+
     const handlePreviousPage = () => {
-        onChangePage(paginator.page--)
+        const page = paginator.page - 1
+        onChangePage(page)
     }
 
     const handleNextPage = () => {
-        onChangePage(paginator.page++)
+        const page = paginator.page + 1
+        onChangePage(page)
     }
 
     return (

@@ -3,16 +3,18 @@ import {useTitle} from "../../../layouts/context/TitleContext.tsx"
 import {useUser} from "../../../layouts/context/UserContext.tsx"
 
 
+/**
+ * Composant pour le profil d'utilisateur en cours
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const Profile = () => {
 
-    const {currentUser} = useUser()
+    const {currentUser} = useUser() // Pour l'utilisateur en cours
 
-    /*
-    * Mise à jour du titre du page
-    * */
+    const {setTitle} = useTitle() // Pour le titre de page
 
-    const {setTitle} = useTitle()
-
+    // Gestion de TitleContext
     useEffect(() => {
         setTitle('Profile')
     }, [setTitle])
@@ -22,7 +24,8 @@ const Profile = () => {
         <div>
             <div className="px-4 sm:px-0">
                 <h3 className="text-base/7 font-semibold text-gray-900">User Information</h3>
-                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">Lorem Ipsum is simply dummy text of the printing
+                    and typesetting industry.</p>
             </div>
             <div className="mt-6 border-t border-gray-100">
                 <dl className="divide-y divide-gray-100">

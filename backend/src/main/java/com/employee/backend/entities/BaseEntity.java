@@ -7,6 +7,10 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Entité de base pour toutes les entités.
+ *
+ */
 @Getter
 @Setter
 @MappedSuperclass

@@ -8,6 +8,10 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
+/**
+ * Classe qui gère la pagination d'une liste
+ *
+ */
 @Getter
 @Setter
 @AllArgsConstructor

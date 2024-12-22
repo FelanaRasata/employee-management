@@ -1,8 +1,7 @@
 import axiosInstance from '../../../../shared/core/services/api.service.ts'
 import {AxiosError} from 'axios'
-import {ResponseType} from "../../../../shared/core/utils/interfaces.ts"
-import {SignInRequestDTO} from "../model/dto/SignInRequestDTO.ts"
-import {SignUpRequestDTO} from "../model/dto/SignUpRequestDTO.ts"
+import {IResponseType} from "../../../../shared/core/utils/interfaces.ts"
+import {UserRequestDTO} from "../model/dto/UserRequestDTO.ts"
 import {IUser} from "../../../others/core/model/users.model.ts"
 
 
@@ -18,21 +17,21 @@ interface JwtResponseDTO {
 }
 
 
-export const signIn = async (signUpRequestDTO: SignInRequestDTO): Promise<string> => {
+export const signIn = async (signUpRequestDTO: UserRequestDTO): Promise<string> => {
 
     try {
 
         const url = `${BASE_ENDPOINT}/sign-in`
 
         const response =
-            await axiosInstance.post<ResponseType<JwtResponseDTO>>(url, signUpRequestDTO)
+            await axiosInstance.post<IResponseType<JwtResponseDTO>>(url, signUpRequestDTO)
 
         console.log(response)
         return response.data.data.token // Retourne le token JWT
 
     } catch (error) {
 
-        const err = error as AxiosError<ResponseType<null>>
+        const err = error as AxiosError<IResponseType<null>>
 
         throw new Error(err.response?.data.message || 'Sign-in failed')
 
@@ -40,21 +39,21 @@ export const signIn = async (signUpRequestDTO: SignInRequestDTO): Promise<string
 
 }
 
-export const signUp = async (signUpRequestDTO: SignUpRequestDTO): Promise<string> => {
+export const signUp = async (userRequestDTO: UserRequestDTO): Promise<string> => {
 
     try {
 
         const url = `${BASE_ENDPOINT}/sign-up`
 
         const response =
-            await axiosInstance.post<ResponseType<IUser>>(url, signUpRequestDTO)
+            await axiosInstance.post<IResponseType<IUser>>(url, userRequestDTO)
 
         console.log(response)
         return response.data.message
 
     } catch (error) {
 
-        const err = error as AxiosError<ResponseType<null>>
+        const err = error as AxiosError<IResponseType<null>>
 
         throw new Error(err.response?.data.message || 'Sign-up failed')
 
@@ -68,13 +67,13 @@ export const getCurrentUser = async (): Promise<IUser> => {
         const url = `${BASE_ENDPOINT}/current`
 
         const response =
-            await axiosInstance.get<ResponseType<IUser>>(url)
+            await axiosInstance.get<IResponseType<IUser>>(url)
 
         return response.data.data
 
     } catch (error) {
 
-        const err = error as AxiosError<ResponseType<null>>
+        const err = error as AxiosError<IResponseType<null>>
 
         throw new Error(err.response?.data.message || 'No Current user')
 

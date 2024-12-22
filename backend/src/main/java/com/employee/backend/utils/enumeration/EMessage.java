@@ -1,17 +1,19 @@
 package com.employee.backend.utils.enumeration;
 
+/**
+ * Enum des messages de réponse positif ou négatif
+ *
+ */
 public enum EMessage {
-    USERNAME_USED("Nom d'utilisateur déjà utilisé."),
-    BAD_CREDENTIAL("Invalide nom d'utilisateur ou mot de passe."),
+    BAD_CREDENTIAL("Username or password invalid"),
 
 
-    ACCESS_DENIED("Vous n'êtes pas autorisé."),
-    NOT_FOUND(" est introuvable."),
+    NOT_FOUND(" not found."),
 
-    SUCCESS("L'opération est un succès"),
-    SUCCESS_UPDATED(" a été modifié"),
-    SUCCESS_DELETED(" a été supprimé"),
-    SUCCESS_CREATED(" a été créé"),
+    SUCCESS("The operation was successful"),
+    SUCCESS_UPDATED(" is updated"),
+    SUCCESS_DELETED(" is deleted"),
+    SUCCESS_CREATED(" is created"),
 
     FAILED_CREATED(" n'a été pas créé");
 
@@ -30,12 +32,12 @@ public enum EMessage {
         return this.name;
     }
 
-    public String byId(ETable entity, long id) {
-        return entity.toString() + " avec l'id : " + id + " " + this.name;
+    public String byId(String entity, long id) {
+        return entity + " ID : " + id + " " + this.name;
     }
 
-    public String byEntity(ETable entity) {
-        return entity.toString() + " " + this.name;
+    public String byEntity(String entity) {
+        return entity + " " + this.name;
     }
 
     public String byValue(String value) {

@@ -6,10 +6,19 @@ import {useEffect} from "react"
 import {getCurrentUser} from "../../modules/public/core/service/auth.service.ts"
 
 
+/**
+ * Composant pour le template des pages autorisés
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const Layout = () => {
 
     const {setCurrentUser} = useUser()
 
+    /**
+     * Fonction qui récupère l'utilisateur en cours.
+     * Et mets à jour son context UserContext
+     */
     useEffect(() => {
 
         async function fetchEmployee() {
@@ -31,9 +40,7 @@ const Layout = () => {
         <>
             <div className="min-h-full">
                 <Navbar>
-
                 </Navbar>
-
                 <TitleProvider>
                     <Outlet/>
                 </TitleProvider>

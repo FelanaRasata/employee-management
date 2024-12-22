@@ -7,6 +7,10 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 
+/**
+ * Classe de requête pour créer ou modifier un employé
+ *
+ */
 @Getter
 public class EmployeeRequestDTO {
 

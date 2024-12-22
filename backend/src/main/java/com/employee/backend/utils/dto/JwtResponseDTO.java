@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Classe de réponse lors de la connexion.
+ *
+ */
 @Getter
 @Setter
 @AllArgsConstructor

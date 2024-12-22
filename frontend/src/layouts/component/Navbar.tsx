@@ -6,7 +6,7 @@ import {UserCircleIcon} from "@heroicons/react/24/solid"
 import ModalDanger from "../../shared/core/component/ModalDanger.tsx"
 import {useUser} from "../context/UserContext.tsx"
 
-
+// La liste à afficher dans la navigation
 const navigation = [
     {name: 'Home', href: '/home'},
     {name: 'Employee', href: '/employees'}
@@ -16,11 +16,20 @@ function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
+/**
+ * Composant fonctionnel qui affiche le NavBar du template.
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const Navbar = () => {
-    const [isVisible, setIsVisible] = useState<boolean>(false)
 
     const navigate = useNavigate()
 
+    const {currentUser} = useUser() // Pour l'utilisateur en cours
+
+    /**
+     * Fonction qui sera appelée de la confirmation de la déconnexion
+     */
     const handleSignOut = () => {
 
         localStorage.removeItem("token")
@@ -28,11 +37,13 @@ const Navbar = () => {
 
     }
 
-    const { currentUser } = useUser();
+    // Variable qui conditionne l'affichage du Modal de déconnexion
+    const [isVisible, setIsVisible] = useState<boolean>(false)
 
 
     return (
         <>
+            {/* Modal pour confirmer la déconnexion */}
             <ModalDanger
                 isVisible={isVisible}
                 onClose={() => setIsVisible(false)}
@@ -41,6 +52,8 @@ const Navbar = () => {
             >
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </ModalDanger>
+
+            {/* Navbar */}
             <Disclosure as="nav" className="bg-gray-800">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">

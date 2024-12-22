@@ -10,20 +10,31 @@ import {useTitle} from "../../../../layouts/context/TitleContext.tsx"
 import {useAlert} from "../../../../layouts/context/AlertContext.tsx"
 
 
+/**
+ * Composant pour la liste ds employés
+ *
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const EmployeeList = () => {
-    
-    const {showAlert} = useAlert()
 
-    const {setTitle} = useTitle()
+    const {showAlert} = useAlert() // Pour l'affichage d'alert
 
+    const {setTitle} = useTitle() // Pour le titre de page
+
+    // Gestion de TitleContext
     useEffect(() => {
         setTitle('Employee List')
     }, [setTitle])
 
+    /*
+    * Gestion des variables pour la liste des employés paginés
+    * */
     const [employees, setEmployees] = useState<IEmployee[]>([])
     const [paginator, setPaginator] = useState<IPaginator | null>(null)
 
-
+    /*
+   * Appel de l'action pour récupérer la liste des employés
+   * */
     useEffect(() => {
         async function fetchEmployees() {
             try {
@@ -40,8 +51,13 @@ const EmployeeList = () => {
 
     }, [])
 
+    /*
+   * Fonction pour changer de page
+   * */
     const handleOnChangePage = async (page: number) => {
         try {
+
+            console.log("!!!!!",page)
 
             const data = await getEmployees(page)
 
@@ -59,6 +75,8 @@ const EmployeeList = () => {
     return (
         <>
             <AddButton></AddButton>
+
+            {/*Table des employés*/}
             <table className="table-auto w-full  m-5">
                 <thead>
                 <tr>
@@ -84,7 +102,8 @@ const EmployeeList = () => {
                 </tbody>
             </table>
 
-            {paginator && <Pagination paginator={paginator} onChangePage={handleOnChangePage}></Pagination>}
+            {/*Pagination des employés*/}
+            {paginator && <Pagination paginator={paginator} onChangePage={(page)=>handleOnChangePage(page)}></Pagination>}
         </>
     )
 

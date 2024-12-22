@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
 
+/**
+ * Classe qui contient les éléments de la pagination d'une liste
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -35,7 +38,7 @@ public class Paginator {
         this.totalItems = page.getTotalElements();
         this.itemsPerPage = page.getSize();
         this.totalPages = page.getTotalPages();
-        this.page = page.getNumber();
+        this.page = page.getNumber() + 1;
         this.prevPage = page.getNumber() - 1;
         this.nextPage = page.getNumber() + 1;
         this.hasPrevPage = !page.isFirst();

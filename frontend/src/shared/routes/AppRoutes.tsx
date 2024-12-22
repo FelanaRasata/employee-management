@@ -8,20 +8,33 @@ import Layout from "../../layouts/page/Layout.tsx"
 import Home from "../../modules/others/page/Home.tsx"
 import Profile from "../../modules/others/page/Profile.tsx"
 import ProtectedRoute from "./ProtectedRoute.tsx"
+import PublicRoute from "./PublicRoute.tsx"
 
 
 const routes = [
     {
         path: '/',
-        element: <SignIn/>
+        element: (
+            <PublicRoute>
+                <SignIn/>
+            </PublicRoute>
+        )
     },
     {
         path: '/signin',
-        element: <SignIn/>
+        element: (
+            <PublicRoute>
+                <SignIn/>
+            </PublicRoute>
+        )
     },
     {
         path: '/signup',
-        element: <SignUp/>
+        element: (
+            <PublicRoute>
+                <SignUp/>
+            </PublicRoute>
+        )
     },
     {
         path: "/home",

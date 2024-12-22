@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Classe qui contient la structure des réponses uniformes
+ *
+ */
 @Getter
 @Setter
 @AllArgsConstructor

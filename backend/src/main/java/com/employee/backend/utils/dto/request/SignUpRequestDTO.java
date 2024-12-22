@@ -11,6 +11,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Classe de requête pour la création de compte
+ *
+ */
 @Getter
 @Setter
 @AllArgsConstructor

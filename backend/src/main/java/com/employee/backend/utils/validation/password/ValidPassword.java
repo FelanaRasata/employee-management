@@ -5,6 +5,9 @@ import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
+/**
+ * Interface d'annotation qui verifie que le Password est valide à certains condidtion
+ */
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

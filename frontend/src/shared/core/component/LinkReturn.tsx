@@ -9,6 +9,12 @@ interface Props {
 }
 
 
+/**
+ * Composant pour la modification d'un employé
+ * @param children la valeur affichée du lien
+ * @param link lien où on va se diriger
+ * @returns {JSX.Element} Le rendu du composant.
+ */
 const LinkReturn = ({children, link}: Props) => {
     return (
         <Link

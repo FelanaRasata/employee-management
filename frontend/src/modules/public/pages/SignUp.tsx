@@ -2,8 +2,8 @@ import '../../../assets/css/public.css'
 import {Link, useNavigate} from "react-router-dom"
 import {FormEvent, useState} from "react"
 import {signUp} from "../core/service/auth.service.ts"
-import {SignUpRequestDTO} from "../core/model/dto/SignUpRequestDTO.ts"
 import {useAlert} from "../../../layouts/context/AlertContext.tsx"
+import {UserRequestDTO} from "../core/model/dto/UserRequestDTO.ts"
 
 
 const SignUp = () => {
@@ -26,12 +26,12 @@ const SignUp = () => {
     const handleOnSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
-        if (password === confirmPassword){
+        if (password === confirmPassword) {
             try {
 
-                const signUpRequestDTO: SignUpRequestDTO = {username, password}
+                const userRequestDTO: UserRequestDTO = {username, password}
 
-                const message = await signUp(signUpRequestDTO)
+                const message = await signUp(userRequestDTO)
 
                 navigate('/', {
                     state: {message: message}
