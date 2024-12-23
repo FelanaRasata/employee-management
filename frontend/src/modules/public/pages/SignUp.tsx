@@ -33,9 +33,9 @@ const SignUp = () => {
 
                 const message = await signUp(userRequestDTO)
 
-                navigate('/', {
-                    state: {message: message}
-                })
+                showAlert(message, 'success')
+
+                navigate('/')
 
             } catch (err) {
 
