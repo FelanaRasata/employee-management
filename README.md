@@ -35,7 +35,8 @@ POSTGRES_DB=
 Utilisez `docker-compose` pour construire et lancer l'application :
 
 ```bash
-docker-compose up --build
+docker-compose build
+docker-compose up -d
 ```
 
 Cette commande :
